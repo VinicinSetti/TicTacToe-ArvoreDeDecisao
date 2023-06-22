@@ -41,8 +41,19 @@ bool Mapa::MapaCheio() {
 }
 
 void Mapa::Jogar(char valor) {
+    int i, j = 0;
+    std::cout << "Choose a position X[0-2]: ";
+    std::cin >> i;
+    std::cout << "Choose a position Y[0-2]: ";
+    std::cin >> j;
 
+    if (this->JogadaValida(i, j))
+        this->Set(i, j, valor);
+    else
+        std::cout << "Invalid position\n";
+    Jogar(valor);
 }
+
 
 bool Mapa::Vitoria() {
     for (int i = 0; i < 3; ++i) {
