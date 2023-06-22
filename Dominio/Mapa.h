@@ -15,7 +15,7 @@ public:
     char Get(int i, int j);
     void Set(int i, int j, char value);
     bool JogadaValida(int i, int j);
-    void Mover(char valor);
+    void Jogar(char valor);
     bool Vitoria();
     bool MapaCheio();
     void Print();
