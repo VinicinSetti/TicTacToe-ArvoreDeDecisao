@@ -40,7 +40,19 @@ void Mapa::Mover(char valor) {
 }
 
 bool Mapa::Vitoria() {
+    for (int i = 0; i < 3; ++i) {
+        if(this->mapa[i][0] != ' ' && this->mapa[i][0] == this->mapa[i][1] && this->mapa[i][0] == this->mapa[i][2]) return true;
+    }
 
+    for (int j = 0; j < 3; ++j) {
+        if(this->mapa[0][j] != ' ' && this->mapa[0][j] == this->mapa[1][j] && this->mapa[0][j] == this->mapa[2][j]) return true;
+    }
+
+    if(this->mapa[0][0] != ' ' && this->mapa[0][0] == this->mapa[1][1] && this->mapa[0][0] == this->mapa[2][2]) return true;
+
+    if(this->mapa[0][2] != ' ' && this->mapa[0][2] == this->mapa[1][1] && this->mapa[0][2] == this->mapa[2][0]) return true;
+
+    return false;
 }
 
 void Mapa::Print() {
