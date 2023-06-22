@@ -1,0 +1,14 @@
+//
+// Created by vinic on 21/06/2023.
+//
+
+#ifndef JOGODAVELHACOMARVORE_ARVORE_H
+#define JOGODAVELHACOMARVORE_ARVORE_H
+
+
+class Arvore {
+
+};
+
+
+#endif //JOGODAVELHACOMARVORE_ARVORE_H
