@@ -6,8 +6,7 @@
 #define JOGODAVELHACOMARVORE_MAPA_H
 
 
-class Mapa {
-public:
+struct Mapa {
     char mapa[3][3];
 
     Mapa();

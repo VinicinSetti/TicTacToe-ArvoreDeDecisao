@@ -4,9 +4,14 @@
 
 #ifndef JOGODAVELHACOMARVORE_ARVORE_H
 #define JOGODAVELHACOMARVORE_ARVORE_H
+#include "Mapa.cpp"
+
+struct Arvore {
+    Mapa mapa;
+    Nofilho[8];
 
 
-class Arvore {
+    Arvore(Mapa mapa);
 
 };
 
