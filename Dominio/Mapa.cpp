@@ -71,40 +71,42 @@ bool Mapa::Vitoria(char jogador) {
     return false;
 }
 
-int minimax(Mapa mapa, int depth, bool isMaximizingPlayer) {
-    if (checkWin(board, 'X'))
+int Mapa::Minimax(int profundidade, bool rodada) {
+    if (Vitoria('X'))
         return 1;
-    if (checkWin(board, 'O'))
+    if (Vitoria('O'))
         return -1;
-    if (isBoardFull(board))
+    if (MapaCheio())
         return 0;
 
-    if (isMaximizingPlayer) {
-        int bestScore = -1000;
+    if (rodada) {
+        int melhorPonto = -1000;
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                if (board[i][j] == ' ') {
-                    board[i][j] = 'X';
-                    int score = minimax(board, depth + 1, false);
-                    board[i][j] = ' ';
-                    bestScore = std::max(score, bestScore);
+                if (this->mapa[i][j] == ' ') {
+                    this->mapa[i][j] = 'X';
+                    int score = Minimax(profundidade + 1, false);
+                    this->mapa[i][j] = ' ';
+                    if(score > melhorPonto) melhorPonto = score;
+                    else melhorPonto = melhorPonto;
                 }
             }
         }
-        return bestScore;
+        return melhorPonto;
     } else {
-        int bestScore = 1000;
+        int melhorPonto = 1000;
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                if (board[i][j] == ' ') {
-                    board[i][j] = 'O';
-                    int score = minimax(board, depth + 1, true);
-                    board[i][j] = ' ';
-                    bestScore = std::min(score, bestScore);
+                if (this->mapa[i][j] == ' ') {
+                    this->mapa[i][j] = 'O';
+                    int score = Minimax(profundidade + 1, true);
+                    this->mapa[i][j] = ' ';
+                    if(score < melhorPonto) melhorPonto = score;
+                    else melhorPonto = melhorPonto;
                 }
             }
         }
-        return bestScore;
+        return melhorPonto;
     }
 }
 
