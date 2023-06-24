@@ -2,7 +2,7 @@ CC = g++
 CFLAGS := -Wall  -Wextra $(CFLAGS)
 
 
-SRCS = main.cpp Dominio/Arvore.cpp Dominio/Mapa.cpp
+SRCS = main.cpp Dominio/Arvore.cpp Dominio/Mapa.cpp Dominio/Menu.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: main

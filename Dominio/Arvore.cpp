@@ -18,12 +18,14 @@ int Arvore::Minimax(int altura, bool rodada) {
         int melhorPonto = -1000;
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                if (this->mapa[i][j] == ' ') {
-                    this->mapa[i][j] = 'X';
-                    int score = Minimax(altura + 1, false);
-                    this->mapa[i][j] = ' ';
-                    if(score > melhorPonto) melhorPonto = score;
-                    else melhorPonto = melhorPonto;
+                this->mapa.mapa[i][j] = 'X';
+                int score = Minimax(altura + 1, false);
+                this->mapa.mapa[i][j] = ' ';
+                if(score > melhorPonto) {
+                    melhorPonto = score;
+                }
+                else {
+                    melhorPonto = melhorPonto;
                 }
             }
         }
@@ -32,10 +34,10 @@ int Arvore::Minimax(int altura, bool rodada) {
         int melhorPonto = 1000;
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                if (this->mapa[i][j] == ' ') {
-                    this->mapa[i][j] = 'O';
+                if (this->mapa.mapa[i][j] == ' ') {
+                    this->mapa.mapa[i][j] = 'O';
                     int score = Minimax(altura + 1, true);
-                    this->mapa[i][j] = ' ';
+                    this->mapa.mapa[i][j] = ' ';
                     if(score < melhorPonto) melhorPonto = score;
                     else melhorPonto = melhorPonto;
                 }
@@ -47,22 +49,23 @@ int Arvore::Minimax(int altura, bool rodada) {
 
 JogadaMaquina Arvore::encontrarJogada() {
     int melhorPonto = -1000;
-    JogadaMaquina melhorJoagada;
-    melhorJoagada.lin = -1;
-    melhorJoagada.col = -1;
+    JogadaMaquina melhorJogada;
+    melhorJogada.lin = -1;
+    melhorJogada.col = -1;
 
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
-            if (this->mapa[i][j] == ' ') {
-                this->mapa[i][j] = 'X';
+            if (this->mapa.mapa[i][j] == ' ') {
+                this->mapa.mapa[i][j] = 'X';
                 int score = Minimax(0, false);
-                this->mapa[i][j] = ' ';
+                this->mapa.mapa[i][j] = ' ';
                 if (score > melhorPonto) {
                     melhorPonto = score;
-                    melhorJoagada.lin = i;
-                    melhorJoagada.col = j;
+                    melhorJogada.lin = i;
+                    melhorJogada.col = j;
                 }
             }
         }
     }
+    return melhorJogada;
 }

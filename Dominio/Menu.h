@@ -7,13 +7,12 @@
 
 #include <iostream>
 #include <ctime>
-#include "Mapa.cpp"
-#include "Mapa.h"
-#include "Arvore.h"
+#include "Arvore.cpp"
 
 struct Menu{
+    Arvore jogo;
     bool primeiraJogada();
-    void rodar();
+    void rodar(Arvore jogo);
     bool rodando();
 };
 

@@ -1,7 +1,7 @@
 //
 // Created by Alisson on 24/06/2023.
 //
-
+using namespace std;
 #include "Menu.h"
 
 bool Menu::primeiraJogada() {
@@ -12,31 +12,32 @@ bool Menu::primeiraJogada() {
     return false;
 }
 
-void Menu::rodar(Mapa mapa){
-    Mapa mapa = Mapa();
+void Menu::rodar(Arvore mapa){
     bool vez = primeiraJogada();
 
     if(vez == true){
         cout << "Vez do jogador" << endl;
-        mapa.Jogar('X');
-        vez = false
+        this->jogo.mapa.Jogar('X');
+        vez = false;
     } else {
         cout << "Vez da IA" << endl;
-        mapa.Set(0, 0, 'O');
+        this->jogo.mapa.Set(0, 0, 'O');
         vez = true;
     }
-    while(mapa.MapaCheio() == false && mapa.Vitoria() == false){
+    while(this->jogo.mapa.MapaCheio() == false && this->jogo.mapa.Vitoria('X') == false || this->jogo.mapa.MapaCheio() == false == false && this->jogo.mapa.Vitoria('O') == false){
         if(vez == true){
             cout << "Vez do jogador" << endl;
-            mapa.Jogar('X');
+            this->jogo.mapa.Jogar('X');
             vez = false;
         } else {
+            JogadaMaquina IA;
             cout << "Vez da IA" << endl;
-            mapa.Set(0, 0, 'O');
+            IA = this->jogo.encontrarJogada();
+            this->jogo.mapa.mapa[IA.lin][IA.col] = 'O';
             vez = true;
         }
         system("cls");
-        mapa.Print();
+        this->jogo.mapa.Print();
     }
-    mapa.Print();
+    this->jogo.mapa.Print();
 }
