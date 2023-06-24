@@ -6,14 +6,18 @@
 #define JOGODAVELHACOMARVORE_ARVORE_H
 #include "Mapa.cpp"
 
+struct JogadaMaquina{
+    int col, lin;
+};
 struct Arvore {
     Mapa mapa;
-    Nofilho[8];
 
-
+    JogadaMaquina encontrarJogada();
     Arvore(Mapa mapa);
+    int Minimax(int altura, bool rodada)
 
 };
+
 
 
 #endif //JOGODAVELHACOMARVORE_ARVORE_H

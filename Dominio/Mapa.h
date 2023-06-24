@@ -15,7 +15,6 @@ struct Mapa {
     void Set(int i, int j, char value);
     bool JogadaValida(int i, int j);
     void Jogar(char valor);
-
     bool Vitoria();
     bool MapaCheio();
     int Minimax(int profundidade, bool rodada);
