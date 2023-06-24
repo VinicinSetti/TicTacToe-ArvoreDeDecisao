@@ -1,1 +1,1 @@
-g++ -Wall -Wextra -pedantic -std=c++17 -lm main.cpp Dominio/Arvore.cpp Dominio/Mapa.cpp Dominio/Menu.cpp -o exec
+g++ -Wall -Wextra -pedantic -std=c++17 -lm main.cpp Dominio/Arvore.cpp Dominio/Mapa.cpp Dominio/Menu.cpp Dominio/Arvore.h Dominio/Mapa.h Dominio/Menu.h -o exec

@@ -3,7 +3,14 @@
 //
 #include <iostream>
 
+#include "./Dominio//Menu.h"
+
 int main(){
-    
+    Menu menu;
+    Arvore jogoVelha = Arvore();
+    jogoVelha.mapa.Print();
+    menu.rodar(jogoVelha);
+
+
     return 0;
 }
