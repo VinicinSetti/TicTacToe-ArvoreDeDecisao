@@ -14,7 +14,7 @@ struct Arvore {
 
     JogadaMaquina encontrarJogada();
     Arvore(Mapa mapa);
-    int Minimax(int altura, bool rodada)
+    int Minimax(int altura, bool rodada);
 
 };
 

@@ -7,11 +7,11 @@
 
 
 int Arvore::Minimax(int altura, bool rodada) {
-    if (Vitoria('X'))
+    if (this->mapa.Vitoria('X'))
         return 1;
-    if (Vitoria('O'))
+    if (this->mapa.Vitoria('O'))
         return -1;
-    if (MapaCheio())
+    if (this->mapa.MapaCheio())
         return 0;
 
     if (rodada) {

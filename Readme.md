@@ -1,0 +1,1 @@
+g++ -Wall -Wextra -pedantic -std=c++17 -lm main.cpp Dominio/Arvore.cpp Dominio/Mapa.cpp -o exec
