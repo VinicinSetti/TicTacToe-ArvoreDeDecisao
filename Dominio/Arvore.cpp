@@ -54,7 +54,7 @@ JogadaMaquina Arvore::encontrarJogada() {
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
             if (this->mapa[i][j] == ' ') {
-                this->[i][j] = 'X';
+                this->mapa[i][j] = 'X';
                 int score = Minimax(0, false);
                 this->mapa[i][j] = ' ';
                 if (score > melhorPonto) {

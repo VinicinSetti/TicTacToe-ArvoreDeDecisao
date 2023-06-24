@@ -17,8 +17,8 @@ char Mapa::Get(int i, int j) {
     return this->mapa[i][j];
 }
 
-void Mapa::Set(int i, int j, char value) {
-    this->mapa[i][j] = value;
+void Mapa::Set(int i, int j, char valor) {
+    this->mapa[i][j] = valor;
 }
 
 bool Mapa::JogadaValida(int i, int j) {

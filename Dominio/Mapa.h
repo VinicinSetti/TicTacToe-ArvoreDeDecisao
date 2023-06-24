@@ -12,12 +12,12 @@ struct Mapa {
     Mapa();
 
     char Get(int i, int j);
-    void Set(int i, int j, char value);
+    void Set(int i, int j, char valor);
     bool JogadaValida(int i, int j);
     void Jogar(char valor);
-    bool Vitoria();
+    bool Vitoria(char jogador);
     bool MapaCheio();
-    int Minimax(int profundidade, bool rodada);
+    int Minimax(int altura, bool rodada);
     void Print();
 };
 
