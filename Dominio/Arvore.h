@@ -6,23 +6,18 @@
 #define JOGODAVELHACOMARVORE_ARVORE_H
 #include "Mapa.h"
 
-struct JogadaMaquina{
-    int col, lin;
-};
-
 struct Arvore {
     Mapa mapa;
 
-    JogadaMaquina encontrarJogada();
+    void encontrarJogada();
     int Minimax(int altura, bool rodada);
 
 };
 
-
 int Arvore::Minimax(int altura, bool rodada) {
-    if (this->mapa.Vitoria('X'))
-        return 1;
     if (this->mapa.Vitoria('O'))
+        return 1;
+    if (this->mapa.Vitoria('X'))
         return -1;
     if (this->mapa.MapaCheio())
         return 0;
@@ -31,10 +26,11 @@ int Arvore::Minimax(int altura, bool rodada) {
         int melhorPonto = -1000;
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                if(this->mapa.mapa[i][j] == ' ') {
-                    this->mapa.mapa[i][j] = 'X';
+                if(this->mapa.Get(i, j) == ' ') {
+                    this->mapa.Set(i, j, 'O');
+                    this->mapa.Print();
                     int score = Minimax(altura + 1, false);
-                    this->mapa.mapa[i][j] = ' ';
+                    this->mapa.Set(i, j, ' ');
                     if (score > melhorPonto) {
                         melhorPonto = score;
                     } else {
@@ -48,12 +44,17 @@ int Arvore::Minimax(int altura, bool rodada) {
         int melhorPonto = 1000;
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                if (this->mapa.mapa[i][j] == ' ') {
-                    this->mapa.mapa[i][j] = 'O';
+                if (this->mapa.Get(i, j) == ' ') {
+                    this->mapa.Set(i, j, 'X');
+                    this->mapa.Print();
                     int score = Minimax(altura + 1, true);
                     this->mapa.mapa[i][j] = ' ';
-                    if(score < melhorPonto) melhorPonto = score;
-                    else melhorPonto = melhorPonto;
+                    if(score < melhorPonto) {
+                        melhorPonto = score;
+                    }
+                    else {
+                        melhorPonto = melhorPonto;
+                    }
                 }
             }
         }
@@ -61,27 +62,26 @@ int Arvore::Minimax(int altura, bool rodada) {
     }
 }
 
-JogadaMaquina Arvore::encontrarJogada() {
+void Arvore::encontrarJogada() {
     int melhorPonto = -1000;
-    JogadaMaquina melhorJogada;
-    melhorJogada.lin = -1;
-    melhorJogada.col = -1;
-
+    int linha = -1;
+    int coluna = -1;
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
-            if (this->mapa.mapa[i][j] == ' ') {
-                this->mapa.mapa[i][j] = 'X';
-                int score = Minimax(0, false);
-                this->mapa.mapa[i][j] = ' ';
-                if (score > melhorPonto) {
-                    melhorPonto = score;
-                    melhorJogada.lin = i;
-                    melhorJogada.col = j;
+            if (this->mapa.Get(i, j) == ' ') {
+                this->mapa.Set(i, j, 'O');
+                this->mapa.Print();
+                int ponto = Minimax(0, false);
+                this->mapa.Set(i, j, ' ');
+                if (ponto > melhorPonto) {
+                    melhorPonto = ponto;
+                    linha = i;
+                    coluna = j;
                 }
             }
         }
     }
-    return melhorJogada;
+    this->mapa.Set(linha, coluna, 'O');
 }
 
 

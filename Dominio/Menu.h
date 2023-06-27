@@ -26,7 +26,7 @@ bool Menu::primeiraJogada() {
 void Menu::rodar(){
     bool vez = primeiraJogada();
 
-    if(vez == true){
+    if(vez){
         cout << "Vez do jogador" << endl;
         this->menu.mapa.Jogar('X');
         vez = false;
@@ -42,9 +42,7 @@ void Menu::rodar(){
             vez = false;
         } else {
             cout << "Vez da IA" << endl;
-            JogadaMaquina IA = this->menu.encontrarJogada();
-            this->menu.mapa.Set(IA.lin, IA.col, 'O');
-            //arvore.mapa.mapa[IA.lin][IA.col] = 'O';
+            this->menu.encontrarJogada();
             vez = true;
         }
         //system("cls");
