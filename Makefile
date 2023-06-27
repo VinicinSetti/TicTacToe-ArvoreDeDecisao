@@ -1,7 +1,6 @@
 CC = g++
-CFLAGS := -Os -pipe -Wall -Wextra -fPIC -I. -Wno-unused-function $(CFLAGS)
-LDFLAGS := $(LDFLAGS) -lstdc++ -lm -L.
-EXEC = exec
+CFLAGS :=-Wall -Wextra $(CFLAGS)
+EXEC = main
 
 SRCS = main.cpp Dominio/Menu.h Dominio/Arvore.h Dominio/Mapa.h
 OBJS = $(SRCS:.cpp=.o)
@@ -16,4 +15,4 @@ $(EXEC): $(OBJS)
 
 .PHONY: clean
 clean:
-	rm -f $(OBJS) $(EXEC)
+	rm -f *.o Dominio/*.o $(EXEC)

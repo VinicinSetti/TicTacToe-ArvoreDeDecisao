@@ -10,11 +10,11 @@ struct Arvore {
     Mapa mapa;
 
     void encontrarJogada();
-    int Minimax(int altura, bool rodada);
+    int Minimax(bool rodada);
 
 };
 
-int Arvore::Minimax(int altura, bool rodada) {
+int Arvore::Minimax(bool rodada) {
     if (this->mapa.Vitoria('O'))
         return 1;
     if (this->mapa.Vitoria('X'))
@@ -28,8 +28,7 @@ int Arvore::Minimax(int altura, bool rodada) {
             for (int j = 0; j < 3; ++j) {
                 if(this->mapa.Get(i, j) == ' ') {
                     this->mapa.Set(i, j, 'O');
-                    this->mapa.Print();
-                    int score = Minimax(altura + 1, false);
+                    int score = Minimax(false);
                     this->mapa.Set(i, j, ' ');
                     if (score > melhorPonto) {
                         melhorPonto = score;
@@ -46,8 +45,7 @@ int Arvore::Minimax(int altura, bool rodada) {
             for (int j = 0; j < 3; ++j) {
                 if (this->mapa.Get(i, j) == ' ') {
                     this->mapa.Set(i, j, 'X');
-                    this->mapa.Print();
-                    int score = Minimax(altura + 1, true);
+                    int score = Minimax(true);
                     this->mapa.mapa[i][j] = ' ';
                     if(score < melhorPonto) {
                         melhorPonto = score;
@@ -70,8 +68,7 @@ void Arvore::encontrarJogada() {
         for (int j = 0; j < 3; ++j) {
             if (this->mapa.Get(i, j) == ' ') {
                 this->mapa.Set(i, j, 'O');
-                this->mapa.Print();
-                int ponto = Minimax(0, false);
+                int ponto = Minimax(false);
                 this->mapa.Set(i, j, ' ');
                 if (ponto > melhorPonto) {
                     melhorPonto = ponto;
