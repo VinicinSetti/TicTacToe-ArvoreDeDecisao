@@ -31,14 +31,15 @@ int Arvore::Minimax(int altura, bool rodada) {
         int melhorPonto = -1000;
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                this->mapa.mapa[i][j] = 'X';
-                int score = Minimax(altura + 1, false);
-                this->mapa.mapa[i][j] = ' ';
-                if(score > melhorPonto) {
-                    melhorPonto = score;
-                }
-                else {
-                    melhorPonto = melhorPonto;
+                if(this->mapa.mapa[i][j] == ' ') {
+                    this->mapa.mapa[i][j] = 'X';
+                    int score = Minimax(altura + 1, false);
+                    this->mapa.mapa[i][j] = ' ';
+                    if (score > melhorPonto) {
+                        melhorPonto = score;
+                    } else {
+                        melhorPonto = melhorPonto;
+                    }
                 }
             }
         }

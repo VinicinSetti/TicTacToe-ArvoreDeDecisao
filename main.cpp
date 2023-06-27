@@ -7,9 +7,7 @@
 
 int main(){
     Menu menu;
-    Arvore jogoVelha = Arvore();
-    jogoVelha.mapa.Print();
-    menu.rodar(jogoVelha);
+    menu.rodar();
 
 
     return 0;

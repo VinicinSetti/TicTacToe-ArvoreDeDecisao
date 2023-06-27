@@ -10,8 +10,9 @@
 #include "Arvore.h"
 
 struct Menu{
+    Arvore menu;
     bool primeiraJogada();
-    void rodar(Arvore jogo);
+    void rodar();
 };
 
 bool Menu::primeiraJogada() {
@@ -22,34 +23,34 @@ bool Menu::primeiraJogada() {
     return false;
 }
 
-void Menu::rodar(Arvore arvore){
+void Menu::rodar(){
     bool vez = primeiraJogada();
 
     if(vez == true){
         cout << "Vez do jogador" << endl;
-        arvore.mapa.Jogar('X');
+        this->menu.mapa.Jogar('X');
         vez = false;
     } else {
         cout << "Vez da IA" << endl;
-        arvore.mapa.Set(0, 0, 'O');
+        this->menu.mapa.Set(0, 0, 'O');
         vez = true;
     }
-    while(!arvore.mapa.MapaCheio() && !arvore.mapa.Vitoria('X') && !arvore.mapa.Vitoria('O')){
+    while(!this->menu.mapa.MapaCheio() && !this->menu.mapa.Vitoria('X') && !this->menu.mapa.Vitoria('O')){
         if(vez){
             cout << "Vez do jogador" << endl;
-            arvore.mapa.Jogar('X');
+            this->menu.mapa.Jogar('X');
             vez = false;
         } else {
             cout << "Vez da IA" << endl;
-            JogadaMaquina IA = arvore.encontrarJogada();
-            arvore.mapa.Set(IA.lin, IA.col, 'O');
+            JogadaMaquina IA = this->menu.encontrarJogada();
+            this->menu.mapa.Set(IA.lin, IA.col, 'O');
             //arvore.mapa.mapa[IA.lin][IA.col] = 'O';
             vez = true;
         }
         //system("cls");
-        arvore.mapa.Print();
+        this->menu.mapa.Print();
     }
-    arvore.mapa.Print();
+    this->menu.mapa.Print();
 }
 
 #endif //TICTACTOE_ARVOREDEDECISAO_MENU_H
