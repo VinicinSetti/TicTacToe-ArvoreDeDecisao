@@ -19,7 +19,6 @@ struct Mapa {
     void Jogar(char valor);
     bool Vitoria(char jogador);
     bool MapaCheio();
-    int Minimax(int altura, bool rodada);
     void Print();
 };
 
@@ -62,15 +61,15 @@ bool Mapa::MapaCheio() {
 void Mapa::Jogar(char valor) {
     int i, j = 0;
     this->Print();
-    std::cout << "Escolha uma posicao X[0-2]: ";
-    std::cin >> i;
-    std::cout << "Escolha uma posicao Y[0-2]: ";
-    std::cin >> j;
+    cout << "Escolha uma posicao X[0-2]: ";
+    cin >> i;
+    cout << "Escolha uma posicao Y[0-2]: ";
+    cin >> j;
 
     if (this->JogadaValida(i, j)){
         this->Set(i, j, valor);
     } else {
-        std::cout << "Jogada invalida\n";
+        cout << "Jogada invalida\n";
         Jogar(valor);
     }
 }
@@ -78,29 +77,29 @@ void Mapa::Jogar(char valor) {
 
 bool Mapa::Vitoria(char jogador) {
     for (int i = 0; i < 3; ++i) {
-        if(this->mapa[i][0] == jogador && this->mapa[i][1] == this->mapa[i][0] && this->mapa[i][2] == this->mapa[i][0]) return true;
+        if(this->mapa[i][0] == jogador && this->mapa[i][1] == jogador && this->mapa[i][2] == jogador) return true;
     }
 
     for (int j = 0; j < 3; ++j) {
-        if(this->mapa[0][j] == jogador && this->mapa[1][j] == this->mapa[0][j] && this->mapa[2][j] == this->mapa[0][j]) return true;
+        if(this->mapa[0][j] == jogador && this->mapa[1][j] == jogador && this->mapa[2][j] == jogador) return true;
     }
 
-    if(this->mapa[0][0] == jogador && this->mapa[1][1] == this->mapa[0][0] && this->mapa[2][2] == this->mapa[0][0]) return true;
+    if(this->mapa[0][0] == jogador && this->mapa[1][1] == jogador && this->mapa[2][2] == jogador) return true;
 
-    if(this->mapa[0][2] == jogador && this->mapa[1][1] == this->mapa[0][2] && this->mapa[2][0] == this->mapa[0][2]) return true;
+    if(this->mapa[0][2] == jogador && this->mapa[1][1] == jogador && this->mapa[2][0] == jogador) return true;
 
     return false;
 }
 
 
 void Mapa::Print() {
-    std::cout << "-------------" << std::endl;
+    cout << "-------------" << endl;
     for (int i = 0; i < 3; ++i) {
-        std::cout << "| ";
+        cout << "| ";
         for (int j = 0; j < 3; ++j) {
-            std::cout << this->mapa[i][j] << " | ";
+            cout << this->mapa[i][j] << " | ";
         }
-        std::cout << std::endl << "-------------" << std::endl;
+        cout << endl << "-------------" << endl;
     }
 }
 
