@@ -34,7 +34,7 @@ void Menu::rodar() {
         vez = true; // Passa a vez para o Jogador
     }
 
-    // Loop principal do jogo
+    // Laço para rodar o jogo
     while (!this->menu.mapa.MapaCheio() && !this->menu.mapa.Vitoria('X') && !this->menu.mapa.Vitoria('O')) {
         if (vez) {
             cout << "Vez do jogador" << endl;

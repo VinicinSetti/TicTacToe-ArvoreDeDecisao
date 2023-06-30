@@ -1,20 +1,14 @@
-//
-// Created by vinic on 21/06/2023.
-//
-
 #ifndef JOGODAVELHACOMARVORE_ARVORE_H
 #define JOGODAVELHACOMARVORE_ARVORE_H
 #include "Mapa.h"
 
 struct Arvore {
     Mapa mapa;
-    int profundidade;
+    int folha;
 
     void encontrarJogada();
     int Minimax(bool rodada);
-
 };
-
 
 int Arvore::Minimax(bool rodada) {
     if (this->mapa.Vitoria('O'))
@@ -29,7 +23,7 @@ int Arvore::Minimax(bool rodada) {
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
                 if(this->mapa.Get(i, j) == ' ') {
-                    this->profundidade++;
+                    this->folha++;
                     this->mapa.Set(i, j, 'O');
                     int score = Minimax(false);
                     this->mapa.Set(i, j, ' ');
@@ -47,7 +41,7 @@ int Arvore::Minimax(bool rodada) {
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
                 if (this->mapa.Get(i, j) == ' ') {
-                    this->profundidade++;
+                    this->folha++;
                     this->mapa.Set(i, j, 'X');
                     int score = Minimax(true);
                     this->mapa.Set(i, j, ' ');
@@ -72,7 +66,7 @@ void Arvore::encontrarJogada() {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             if (this->mapa.Get(i, j) == ' ') {
-                this->profundidade = 0;
+                this->folha = 0;
                 this->mapa.Set(i, j, 'O');
                 int ponto = Minimax(false);
                 this->mapa.Set(i, j, ' ');
@@ -81,17 +75,16 @@ void Arvore::encontrarJogada() {
                     linha = i;
                     coluna = j;
                 }
-                if(this->profundidade == 0){
+                if(this->folha == 0){
                     linha = i;
                     coluna = j;
                     break;
                 }
             }
         }
-        if(this->profundidade == 0) break;
+        if(this->folha == 0) break;
     }
     this->mapa.Set(linha, coluna, 'O');
 }
-
 
 #endif //JOGODAVELHACOMARVORE_ARVORE_H
