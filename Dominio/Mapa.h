@@ -1,7 +1,3 @@
-//
-// Created by vinic on 21/06/2023.
-//
-
 #ifndef JOGODAVELHACOMARVORE_MAPA_H
 #define JOGODAVELHACOMARVORE_MAPA_H
 #include <iostream>
@@ -10,7 +6,6 @@ using namespace std;
 
 struct Mapa {
     char mapa[3][3];
-
     Mapa();
 
     char Get(int i, int j);
@@ -61,10 +56,12 @@ bool Mapa::MapaCheio() {
 void Mapa::Jogar(char valor) {
     int i, j = 0;
     this->Print();
-    cout << "Escolha uma posicao X[0-2]: ";
+    cout << "Escolha uma linha (1-3): ";
     cin >> i;
-    cout << "Escolha uma posicao Y[0-2]: ";
+    i--;
+    cout << "Escolha uma coluna (1-3): ";
     cin >> j;
+    j--;
 
     if (this->JogadaValida(i, j)){
         this->Set(i, j, valor);
@@ -73,7 +70,6 @@ void Mapa::Jogar(char valor) {
         Jogar(valor);
     }
 }
-
 
 bool Mapa::Vitoria(char jogador) {
     for (int i = 0; i < 3; ++i) {
@@ -91,17 +87,18 @@ bool Mapa::Vitoria(char jogador) {
     return false;
 }
 
-
 void Mapa::Print() {
-    cout << "-------------" << endl;
+    int lin = 1;
+    cout << "    1   2   3" << endl;
+    cout << "  -------------" << endl;
     for (int i = 0; i < 3; ++i) {
-        cout << "| ";
+        cout << lin << " | ";
         for (int j = 0; j < 3; ++j) {
             cout << this->mapa[i][j] << " | ";
         }
-        cout << endl << "-------------" << endl;
+        cout << endl << "  -------------" << endl;
+        lin++;
     }
 }
-
 
 #endif //JOGODAVELHACOMARVORE_MAPA_H
