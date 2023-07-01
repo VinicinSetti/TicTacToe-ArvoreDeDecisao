@@ -1,13 +1,14 @@
 #ifndef JOGODAVELHACOMARVORE_MAPA_H
 #define JOGODAVELHACOMARVORE_MAPA_H
+
 #include <iostream>
 
 using namespace std;
 
 struct Mapa {
-    char mapa[3][3];
-    Mapa();
+    char mapa[3][3];  // Matriz para representar o mapa do jogo
 
+    Mapa();
     char Get(int i, int j);
     void Set(int i, int j, char valor);
     bool JogadaValida(int i, int j);
@@ -17,7 +18,7 @@ struct Mapa {
     void Print();
 };
 
-Mapa::Mapa() {
+Mapa::Mapa() { // Método construtor do mapa
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
             this->mapa[i][j] = ' ';
@@ -34,23 +35,23 @@ void Mapa::Set(int i, int j, char valor) {
 }
 
 bool Mapa::JogadaValida(int i, int j) {
-    if(this->mapa[i][j] != ' '){
-        return false;
-    } else if(i < 0 || i > 2 || j < 0 || j > 2){
-        return false;
-    } else  {
-        return true;
+    if (this->mapa[i][j] != ' ') {
+        return false;  // Posição já está ocupada
+    } else if (i < 0 || i > 2 || j < 0 || j > 2) {
+        return false;  // Posição inválida
+    } else {
+        return true;  // Jogada válida
     }
 }
 
 bool Mapa::MapaCheio() {
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
-            if(this->mapa[i][j] == ' ')
-                return false;
+            if (this->mapa[i][j] == ' ')
+                return false;  // Ainda existem espaços vazios no mapa
         }
     }
-    return true;
+    return true;  // O mapa está completamente preenchido
 }
 
 void Mapa::Jogar(char valor) {
@@ -63,28 +64,32 @@ void Mapa::Jogar(char valor) {
     cin >> j;
     j--;
 
-    if (this->JogadaValida(i, j)){
-        this->Set(i, j, valor);
+    if (this->JogadaValida(i, j)) {
+        this->Set(i, j, valor);  // Realiza a jogada no mapa
     } else {
         cout << "Jogada invalida\n";
-        Jogar(valor);
+        Jogar(valor);  // Solicita uma nova jogada válida
     }
 }
 
 bool Mapa::Vitoria(char jogador) {
     for (int i = 0; i < 3; ++i) {
-        if(this->mapa[i][0] == jogador && this->mapa[i][1] == jogador && this->mapa[i][2] == jogador) return true;
+        if (this->mapa[i][0] == jogador && this->mapa[i][1] == jogador && this->mapa[i][2] == jogador)
+            return true;  // Vitória na linha i
     }
 
     for (int j = 0; j < 3; ++j) {
-        if(this->mapa[0][j] == jogador && this->mapa[1][j] == jogador && this->mapa[2][j] == jogador) return true;
+        if (this->mapa[0][j] == jogador && this->mapa[1][j] == jogador && this->mapa[2][j] == jogador)
+            return true;  // Vitória na coluna j
     }
 
-    if(this->mapa[0][0] == jogador && this->mapa[1][1] == jogador && this->mapa[2][2] == jogador) return true;
+    if (this->mapa[0][0] == jogador && this->mapa[1][1] == jogador && this->mapa[2][2] == jogador)
+        return true;  // Vitória na diagonal principal
 
-    if(this->mapa[0][2] == jogador && this->mapa[1][1] == jogador && this->mapa[2][0] == jogador) return true;
+    if (this->mapa[0][2] == jogador && this->mapa[1][1] == jogador && this->mapa[2][0] == jogador)
+        return true;  // Vitória na diagonal secundária
 
-    return false;
+    return false;  // Nenhuma configuração de vitória encontrada
 }
 
 void Mapa::Print() {
